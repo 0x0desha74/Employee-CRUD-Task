@@ -1,5 +1,6 @@
 
 using EmployeeCRUDServer.Data;
+using EmployeeCRUDServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeCRUDServer
@@ -16,6 +17,8 @@ namespace EmployeeCRUDServer
                 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found.");
                 options.UseSqlServer(connectionString);
             });
+            
+            builder.Services.AddApplicationServices();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -48,9 +51,9 @@ namespace EmployeeCRUDServer
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
 
             app.MapControllers();

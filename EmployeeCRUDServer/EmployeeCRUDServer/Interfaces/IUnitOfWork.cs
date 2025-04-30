@@ -1,6 +1,10 @@
-﻿namespace EmployeeCRUDServer.Interfaces
+﻿using EmployeeCRUDServer.Entities;
+
+namespace EmployeeCRUDServer.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
+        IGenericRepository<T> Repository<T>() where T : BaseEntity;
+        Task<int> Complete();
     }
 }

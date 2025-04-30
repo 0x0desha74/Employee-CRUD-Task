@@ -1,6 +1,6 @@
-﻿namespace EmployeeCRUDServer.Entities
+﻿namespace EmployeeCRUDServer.DTOs.Response
 {
-    public class Employee : BaseEntity
+    public class EmployeeToReturnDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
