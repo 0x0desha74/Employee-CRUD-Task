@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "pvw6/YxL8AaCn7xrqcZQv1RnKD5qXLYOuJLVh+9rSAM=",
+  "Source": "EmployeeCRUDServer",
+  "BasePath": "_content/EmployeeCRUDServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
