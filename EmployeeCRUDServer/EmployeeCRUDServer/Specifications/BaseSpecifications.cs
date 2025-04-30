@@ -5,7 +5,7 @@ namespace EmployeeCRUDServer.Specifications
 {
     public class BaseSpecifications<T> : ISpecification<T> where T : BaseEntity
     {
-        public Expression<Func<T, bool>> Criteria { get; set ; }
+        public Expression<Func<T, bool>> Criteria { get; set; }
         public List<Func<IQueryable<T>, IQueryable<T>>> Includes { get; } = new();
 
         public BaseSpecifications()
