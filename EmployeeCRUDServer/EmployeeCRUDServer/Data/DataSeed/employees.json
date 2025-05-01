@@ -1,0 +1,62 @@
+[
+  {
+    "FirstName": "Mustafa",
+    "LastName": "Elsayed",
+    "Email": "mustafa.elsayed@example.com",
+    "Position": "Software Developer"
+  },
+  {
+    "FirstName": "Sara",
+    "LastName": "Ibrahim",
+    "Email": "sara.ibrahim@example.com",
+    "Position": "Project Manager"
+  },
+  {
+    "FirstName": "Ali",
+    "LastName": "Hassan",
+    "Email": "ali.hassan@example.com",
+    "Position": "QA Engineer"
+  },
+  {
+    "FirstName": "Nour",
+    "LastName": "Mohamed",
+    "Email": "nour.mohamed@example.com",
+    "Position": "UI/UX Designer"
+  },
+  {
+    "FirstName": "Omar",
+    "LastName": "Khaled",
+    "Email": "omar.khaled@example.com",
+    "Position": "DevOps Engineer"
+  },
+  {
+    "FirstName": "Hana",
+    "LastName": "Tariq",
+    "Email": "hana.tariq@example.com",
+    "Position": "Business Analyst"
+  },
+  {
+    "FirstName": "Youssef",
+    "LastName": "Samir",
+    "Email": "youssef.samir@example.com",
+    "Position": "Backend Developer"
+  },
+  {
+    "FirstName": "Laila",
+    "LastName": "Hussein",
+    "Email": "laila.hussein@example.com",
+    "Position": "Frontend Developer"
+  },
+  {
+    "FirstName": "Tarek",
+    "LastName": "Omar",
+    "Email": "tarek.omar@example.com",
+    "Position": "System Administrator"
+  },
+  {
+    "FirstName": "Mona",
+    "LastName": "Fouad",
+    "Email": "mona.fouad@example.com",
+    "Position": "Scrum Master"
+  }
+]

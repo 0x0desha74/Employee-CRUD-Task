@@ -146,3 +146,4 @@ C:\Users\DESHA\Desktop\.Net\.Net Projects\EmployeeCRUD\EmployeeCRUDServer\Employ
 C:\Users\DESHA\Desktop\.Net\.Net Projects\EmployeeCRUD\EmployeeCRUDServer\EmployeeCRUDServer\obj\Debug\net8.0\EmployeeCRUDServer.pdb
 C:\Users\DESHA\Desktop\.Net\.Net Projects\EmployeeCRUD\EmployeeCRUDServer\EmployeeCRUDServer\obj\Debug\net8.0\EmployeeCRUDServer.genruntimeconfig.cache
 C:\Users\DESHA\Desktop\.Net\.Net Projects\EmployeeCRUD\EmployeeCRUDServer\EmployeeCRUDServer\obj\Debug\net8.0\ref\EmployeeCRUDServer.dll
+C:\Users\DESHA\Desktop\.Net\.Net Projects\EmployeeCRUD\EmployeeCRUDServer\EmployeeCRUDServer\bin\Debug\net8.0\Data\DataSeed\employees.json

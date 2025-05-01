@@ -1,6 +1,7 @@
 
 using EmployeeCRUDServer.Data;
 using EmployeeCRUDServer.Extensions;
+using EmployeeCRUDServer.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeCRUDServer
@@ -35,7 +36,7 @@ namespace EmployeeCRUDServer
             {
                 var context = services.GetRequiredService<ApplicationDbContext>();
                 await context.Database.MigrateAsync();
-
+                await ApplicationDbContextSeed.DataSeedAsync(context);
             }
             catch (Exception ex)
             {
@@ -44,6 +45,8 @@ namespace EmployeeCRUDServer
                 logger.LogError(ex, "An error occurred during migration");
 
             }
+
+            app.UseMiddleware<ExceptionMiddleware>();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -54,6 +57,7 @@ namespace EmployeeCRUDServer
             //app.UseHttpsRedirection();
 
             //app.UseAuthorization();
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 
             app.MapControllers();
