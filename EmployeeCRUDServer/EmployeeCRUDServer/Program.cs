@@ -25,7 +25,14 @@ namespace EmployeeCRUDServer
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("MyPolicy", options =>
+                {
+                    options.AllowAnyHeader().AllowAnyMethod().WithOrigins(builder.Configuration["FrontBaseUrl"]);
+                });
 
+            });
 
 
             var app = builder.Build();
@@ -58,6 +65,7 @@ namespace EmployeeCRUDServer
 
             //app.UseAuthorization();
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
+            app.UseCors("MyPolicy");
 
 
             app.MapControllers();

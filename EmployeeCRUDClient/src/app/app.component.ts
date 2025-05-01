@@ -1,11 +1,14 @@
+import { HttpClientModule } from '@angular/common/http'; 
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true, 
+  imports: [RouterOutlet, RouterModule,FormsModule,HttpClientModule], 
   templateUrl: './app.component.html',
-  styles: [],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'EmployeeCRUDClient';
