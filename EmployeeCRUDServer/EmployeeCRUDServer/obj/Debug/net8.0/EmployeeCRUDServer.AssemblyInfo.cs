@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EmployeeCRUDServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b032fbc966de93b1c2f7b9d911e5127d82fb0800")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5ea38645c85e7a0fcf1e1fc5008af6e497187c8")]
 [assembly: System.Reflection.AssemblyProductAttribute("EmployeeCRUDServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EmployeeCRUDServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

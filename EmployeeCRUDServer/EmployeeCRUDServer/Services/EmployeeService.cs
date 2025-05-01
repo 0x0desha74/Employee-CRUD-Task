@@ -28,5 +28,23 @@ namespace EmployeeCRUDServer.Services
             throw new InvalidOperationException("Failed to create employee entity.");
 
         }
+
+        public async Task<IReadOnlyList<EmployeeToReturnDto>> GetAllAsync()
+        {
+            var employees = await _unitOfWork.Repository<Employee>().GetAllAsync();
+
+            if (!employees.Any())
+                return null; //will be handled in the endpoint
+            return _mapper.Map<IReadOnlyList<EmployeeToReturnDto>>(employees);
+        }
+
+        public  async Task<EmployeeToReturnDto> GetByIdAsync(int id)
+        {
+            var employee = await _unitOfWork.Repository<Employee>().GetByIdAsync(id)
+                ?? null;
+
+
+            return _mapper.Map<EmployeeToReturnDto>(employee);
+        }
     }
 }
