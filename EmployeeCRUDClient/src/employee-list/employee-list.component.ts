@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
-  imports: [  CommonModule],
+  standalone: true,
+  imports: [CommonModule],
   providers: [EmployeeServiceService],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
@@ -14,24 +15,25 @@ import { Router } from '@angular/router';
 export class EmployeeListComponent {
 
   constructor(
-    private employeeService : EmployeeServiceService,
-    private router : Router
-
+    private employeeService: EmployeeServiceService,
+    private router: Router
   ){}
 
-  employees : Employee[] = [];
+  employees: Employee[] = [];
 
-ngOnInit():void{
-  this.employeeService.getEmployees().subscribe(
-    data =>{
-      this.employees =data
-    }
-  )
-}
+  ngOnInit():void{
+    this.employeeService.getEmployees().subscribe(
+      data => {
+        this.employees = data;
+      }
+    );
+  }
 
-updateEmployee(id: number) {
-  this.router.navigate(["update-employee",id])
-}
+  updateEmployee(id: number) {
+    this.router.navigate(["update-employee", id]);
+  }
 
-
+  viewEmployee(id: number) {
+    this.router.navigate(["view-employee", id]);
+  }
 }

@@ -1,0 +1,44 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h3 class="text-center mb-0">
+        <i class="bi bi-person-badge me-2"></i>Employee Details
+      </h3>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="fw-bold">First Name:</label>
+            <p class="form-control-plaintext">{{ employee.firstName }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="fw-bold">Last Name:</label>
+            <p class="form-control-plaintext">{{ employee.lastName }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="fw-bold">Email:</label>
+            <p class="form-control-plaintext">{{ employee.email }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="fw-bold">Position:</label>
+            <p class="form-control-plaintext">{{ employee.position }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" (click)="goBack()">
+          <i class="bi bi-arrow-left me-1"></i> Back to List
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

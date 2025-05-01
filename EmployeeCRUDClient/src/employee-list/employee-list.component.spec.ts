@@ -1,23 +1,38 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { Employee } from '../app/employee';
+import { EmployeeServiceService } from '../app/employee-service.service';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
-import { EmployeeListComponent } from './employee-list.component';
+@Component({
+  selector: 'app-employee-list',
+  imports: [CommonModule],
+  providers: [EmployeeServiceService],
+  templateUrl: './employee-list.component.html',
+  styleUrl: './employee-list.component.css'
+})
+export class EmployeeListComponent {
 
-describe('EmployeeListComponent', () => {
-  let component: EmployeeListComponent;
-  let fixture: ComponentFixture<EmployeeListComponent>;
+  constructor(
+    private employeeService: EmployeeServiceService,
+    private router: Router
+  ){}
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EmployeeListComponent]
-    })
-    .compileComponents();
+  employees: Employee[] = [];
 
-    fixture = TestBed.createComponent(EmployeeListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  ngOnInit():void{
+    this.employeeService.getEmployees().subscribe(
+      data => {
+        this.employees = data;
+      }
+    );
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  updateEmployee(id: number) {
+    this.router.navigate(["update-employee", id]);
+  }
+
+  viewEmployee(id: number) {
+    this.router.navigate(["view-employee", id]);
+  }
+}
