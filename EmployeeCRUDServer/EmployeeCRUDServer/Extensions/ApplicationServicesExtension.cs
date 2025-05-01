@@ -1,5 +1,8 @@
 ﻿using EmployeeCRUDServer.Errors;
+using EmployeeCRUDServer.Helpers;
 using EmployeeCRUDServer.Interfaces;
+using EmployeeCRUDServer.Repositories;
+using EmployeeCRUDServer.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeCRUDServer.Extensions
@@ -10,7 +13,9 @@ namespace EmployeeCRUDServer.Extensions
         {
 
 
-            //services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
+            services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
+            services.AddAutoMapper(typeof(MappingProfiles));
 
 
 

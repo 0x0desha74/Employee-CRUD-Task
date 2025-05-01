@@ -1,14 +1,32 @@
-﻿//using EmployeeCRUDServer.DTOs.Requests;
-//using EmployeeCRUDServer.DTOs.Response;
-//using EmployeeCRUDServer.Interfaces;
+﻿using AutoMapper;
+using EmployeeCRUDServer.DTOs.Requests;
+using EmployeeCRUDServer.DTOs.Response;
+using EmployeeCRUDServer.Entities;
+using EmployeeCRUDServer.Interfaces;
 
-//namespace EmployeeCRUDServer.Services
-//{
-//    public class EmployeeService : IEmployeeService
-//    {
-//        public Task<EmployeeToReturnDto> CreateAsync(EmployeeToCreateDto dto)
-//        {
-           
-//        }
-//    }
-//}
+namespace EmployeeCRUDServer.Services
+{
+    public class EmployeeService : IEmployeeService
+    {
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        public EmployeeService(IMapper mapper, IUnitOfWork unitOfWork)
+        {
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task<EmployeeToReturnDto> CreateAsync(EmployeeToCreateDto dto)
+        {
+            //the model validation is global
+
+            var employee = _mapper.Map<Employee>(dto);
+            await _unitOfWork.Repository<Employee>().AddAsync(employee);
+            var result = await _unitOfWork.Complete();
+            if (result > 0)
+                return _mapper.Map<EmployeeToReturnDto>(employee);
+            throw new InvalidOperationException("Failed to create employee entity.");
+
+        }
+    }
+}
