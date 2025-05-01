@@ -11,6 +11,8 @@ namespace EmployeeCRUDServer.Helpers
         {
             CreateMap<EmployeeToCreateDto, Employee>();
             CreateMap<Employee, EmployeeToReturnDto>();
+            CreateMap<EmployeeToUpdateDto, Employee>();
+            
         }
     }
 }

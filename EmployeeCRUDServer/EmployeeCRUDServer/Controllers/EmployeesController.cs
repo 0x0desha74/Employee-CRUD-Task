@@ -46,5 +46,17 @@ namespace EmployeeCRUDServer.Controllers
             var employee = await _employeeService.CreateAsync(model);
             return Ok(employee);
         }
+
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<EmployeeToReturnDto>> Update(int id , EmployeeToUpdateDto model)
+        {
+            var employee = await _employeeService.UpdateAsync(id, model);
+
+            if (employee is null)
+                return NotFound(new ApiResponse(404));
+
+            return Ok(employee);
+        }
     }
 }

@@ -127,6 +127,63 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeToUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeToUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeToUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeToReturnDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeToReturnDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeToReturnDto"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/WeatherForecast": {
@@ -226,6 +283,39 @@
           "position": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployeeToUpdateDto": {
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "position"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "position": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false

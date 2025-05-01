@@ -46,5 +46,21 @@ namespace EmployeeCRUDServer.Services
 
             return _mapper.Map<EmployeeToReturnDto>(employee);
         }
+
+        public async Task<EmployeeToReturnDto> UpdateAsync(int id , EmployeeToUpdateDto dto)
+        {
+          
+            var existingEmployee = await _unitOfWork.Repository<Employee>().GetByIdAsync(id)
+                ?? null;
+
+            _mapper.Map(dto, existingEmployee);
+            _unitOfWork.Repository<Employee>().Update(existingEmployee);
+            var result = await _unitOfWork.Complete();
+
+            if (result > 0)
+                return _mapper.Map<EmployeeToReturnDto>(existingEmployee);
+            throw new InvalidOperationException("Failed to update employe entity.");
+
+        }
     }
 }
