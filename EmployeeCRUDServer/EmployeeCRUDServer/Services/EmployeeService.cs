@@ -2,7 +2,9 @@
 using EmployeeCRUDServer.DTOs.Requests;
 using EmployeeCRUDServer.DTOs.Response;
 using EmployeeCRUDServer.Entities;
+using EmployeeCRUDServer.Helpers;
 using EmployeeCRUDServer.Interfaces;
+using EmployeeCRUDServer.Specifications;
 
 namespace EmployeeCRUDServer.Services
 {
@@ -31,13 +33,17 @@ namespace EmployeeCRUDServer.Services
 
 
 
-        public async Task<IReadOnlyList<EmployeeToReturnDto>> GetAllAsync()
+        public async Task<Pagination<EmployeeToReturnDto>> GetAllAsync(EmployeeSpecParams specPrams)
         {
-            var employees = await _unitOfWork.Repository<Employee>().GetAllAsync();
+            var employees = await _unitOfWork.Repository<Employee>().GetAllWithSpecAsync(new EmployeeSpecifications(specPrams));
+           
+            var countSpec = new EmployeeFilterationAndCountSpecifications(specPrams);
+            var count = await _unitOfWork.Repository<Employee>().GetCountWithSpecAsync(countSpec);
 
             if (!employees.Any())
                 return null; //will be handled in the endpoint
-            return _mapper.Map<IReadOnlyList<EmployeeToReturnDto>>(employees);
+            var data =  _mapper.Map<IReadOnlyList<EmployeeToReturnDto>>(employees);
+            return new Pagination<EmployeeToReturnDto>(specPrams.PageIndex,specPrams.PageSize,count,data);
         }
 
         public async Task<EmployeeToReturnDto> GetByIdAsync(int id)

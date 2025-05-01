@@ -11,6 +11,10 @@ namespace EmployeeCRUDServer.Specifications
             if (spec.Criteria is not null)
                 query = query.Where(spec.Criteria);
 
+            if (spec.IsPaginationEnabled)
+                query = query.Skip(spec.Skip).Take(spec.Take);
+
+
 
             query = spec.Includes.Aggregate(query, (current, include) => include(current));
             return query;

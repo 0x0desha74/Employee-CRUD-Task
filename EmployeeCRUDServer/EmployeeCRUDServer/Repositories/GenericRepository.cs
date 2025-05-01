@@ -40,6 +40,12 @@ namespace EmployeeCRUDServer.Repositories
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
+        public async Task<int> GetCountWithSpecAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecifications(spec).CountAsync();
+
+        }
+
         public async Task<T> GetEntityWithAsync(ISpecification<T> spec)
         {
             return await ApplySpecifications(spec).FirstOrDefaultAsync();

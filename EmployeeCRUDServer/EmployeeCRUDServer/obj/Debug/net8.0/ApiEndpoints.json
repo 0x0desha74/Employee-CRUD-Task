@@ -6,10 +6,26 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageIndex",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IReadOnlyList\u00601[[EmployeeCRUDServer.DTOs.Response.EmployeeToReturnDto, EmployeeCRUDServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IReadOnlyList\u00601[[EmployeeCRUDServer.Helpers.Pagination\u00601[[EmployeeCRUDServer.DTOs.Response.EmployeeToReturnDto, EmployeeCRUDServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], EmployeeCRUDServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

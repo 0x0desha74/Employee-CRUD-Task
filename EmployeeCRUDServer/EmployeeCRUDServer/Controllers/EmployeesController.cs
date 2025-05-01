@@ -1,7 +1,10 @@
 ﻿using EmployeeCRUDServer.DTOs.Requests;
 using EmployeeCRUDServer.DTOs.Response;
+using EmployeeCRUDServer.Entities;
 using EmployeeCRUDServer.Errors;
+using EmployeeCRUDServer.Helpers;
 using EmployeeCRUDServer.Interfaces;
+using EmployeeCRUDServer.Specifications;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,10 +21,9 @@ namespace EmployeeCRUDServer.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<EmployeeToReturnDto>>> GetEmployees()
+        public async Task<ActionResult<IReadOnlyList<Pagination<EmployeeToReturnDto>>>> GetEmployees([FromQuery]EmployeeSpecParams specParams)
         {
-            var employees = await _employeeService.GetAllAsync();
-
+            var employees = await _employeeService.GetAllAsync(specParams);
             if (employees is null)
                 return NotFound(new ApiResponse(404));
 

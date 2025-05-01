@@ -10,6 +10,31 @@
         "tags": [
           "Employees"
         ],
+        "parameters": [
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -18,7 +43,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/EmployeeToReturnDto"
+                    "$ref": "#/components/schemas/EmployeeToReturnDtoPagination"
                   }
                 }
               },
@@ -26,7 +51,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/EmployeeToReturnDto"
+                    "$ref": "#/components/schemas/EmployeeToReturnDtoPagination"
                   }
                 }
               },
@@ -34,7 +59,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/EmployeeToReturnDto"
+                    "$ref": "#/components/schemas/EmployeeToReturnDtoPagination"
                   }
                 }
               }
@@ -303,6 +328,31 @@
           },
           "position": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployeeToReturnDtoPagination": {
+        "type": "object",
+        "properties": {
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeeToReturnDto"
+            },
             "nullable": true
           }
         },
