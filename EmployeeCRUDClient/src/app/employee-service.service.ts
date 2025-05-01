@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class EmployeeServiceService {
  
-  baseURL = "https://localhost:7248/api/employees"
+  baseURL = "https://localhost:7248/api/employees";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -16,16 +16,16 @@ export class EmployeeServiceService {
     return this.httpClient.post(`${this.baseURL}`, employee);
   }
 
-  getEmployeeById(id:number): Observable<Employee>{
+  getEmployeeById(id: number): Observable<Employee> {
     return this.httpClient.get<Employee>(`${this.baseURL}/${id}`);
   }
 
-  getEmployees():Observable<Employee[]>{
+  getEmployees(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(`${this.baseURL}`);
   }
 
-  updateEmployeeData(employee: Employee,id:number): Observable<Employee> {
-    return this.httpClient.put<Employee>(`${this.baseURL}/${id}`,employee);
+  updateEmployeeData(employee: Employee, id: number): Observable<Employee> {
+    return this.httpClient.put<Employee>(`${this.baseURL}/${id}`, employee);
   }
 
   deleteEmployee(id: number): Observable<any> {
@@ -33,6 +33,6 @@ export class EmployeeServiceService {
   }
 
   searchEmployees(term: string): Observable<Employee[]> {
-    return this.httpClient.get<Employee[]>(`${this.baseURL}/search?term=${term}`);
+    return this.httpClient.get<Employee[]>(`${this.baseURL}/search?q=${term}`);
   }
 }

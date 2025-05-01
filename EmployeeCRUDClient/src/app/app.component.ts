@@ -18,11 +18,9 @@ export class AppComponent {
   
   search() {
     if (this.searchQuery.trim()) {
-      // Navigate to employees list with search query as a parameter
       this.router.navigate(['/employees'], { 
         queryParams: { search: this.searchQuery }
       });
-      // Reset the search input
       this.searchQuery = '';
     }
   }
