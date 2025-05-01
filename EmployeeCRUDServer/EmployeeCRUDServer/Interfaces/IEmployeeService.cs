@@ -9,5 +9,6 @@ namespace EmployeeCRUDServer.Interfaces
         Task<IReadOnlyList<EmployeeToReturnDto>> GetAllAsync();
         Task<EmployeeToReturnDto> GetByIdAsync(int id);
         Task<EmployeeToReturnDto> UpdateAsync(int id , EmployeeToUpdateDto dto);
+        Task<bool> DeleteAsync(int id);
     }
 }

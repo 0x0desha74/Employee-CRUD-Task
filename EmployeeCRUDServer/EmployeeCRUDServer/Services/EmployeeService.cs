@@ -29,6 +29,8 @@ namespace EmployeeCRUDServer.Services
 
         }
 
+
+
         public async Task<IReadOnlyList<EmployeeToReturnDto>> GetAllAsync()
         {
             var employees = await _unitOfWork.Repository<Employee>().GetAllAsync();
@@ -38,7 +40,7 @@ namespace EmployeeCRUDServer.Services
             return _mapper.Map<IReadOnlyList<EmployeeToReturnDto>>(employees);
         }
 
-        public  async Task<EmployeeToReturnDto> GetByIdAsync(int id)
+        public async Task<EmployeeToReturnDto> GetByIdAsync(int id)
         {
             var employee = await _unitOfWork.Repository<Employee>().GetByIdAsync(id)
                 ?? null;
@@ -47,9 +49,9 @@ namespace EmployeeCRUDServer.Services
             return _mapper.Map<EmployeeToReturnDto>(employee);
         }
 
-        public async Task<EmployeeToReturnDto> UpdateAsync(int id , EmployeeToUpdateDto dto)
+        public async Task<EmployeeToReturnDto> UpdateAsync(int id, EmployeeToUpdateDto dto)
         {
-          
+
             var existingEmployee = await _unitOfWork.Repository<Employee>().GetByIdAsync(id)
                 ?? null;
 
@@ -59,8 +61,22 @@ namespace EmployeeCRUDServer.Services
 
             if (result > 0)
                 return _mapper.Map<EmployeeToReturnDto>(existingEmployee);
-            throw new InvalidOperationException("Failed to update employe entity.");
+            throw new InvalidOperationException("Failed to update employee entity.");
 
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var employee = await _unitOfWork.Repository<Employee>().GetByIdAsync(id);
+
+            if (employee is null)
+                return false;
+
+             _unitOfWork.Repository<Employee>().Delete(employee);
+
+            var result = await _unitOfWork.Complete();
+            return result > 0 ? true
+                : throw new InvalidOperationException("Failed to delete employee entity.");
         }
     }
 }

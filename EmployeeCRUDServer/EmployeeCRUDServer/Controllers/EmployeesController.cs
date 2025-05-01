@@ -58,5 +58,16 @@ namespace EmployeeCRUDServer.Controllers
 
             return Ok(employee);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var isDeleted = await _employeeService.DeleteAsync(id);
+
+            if (!isDeleted)
+                return NotFound(new ApiResponse(404));
+
+            return NoContent();
+        }
     }
 }
