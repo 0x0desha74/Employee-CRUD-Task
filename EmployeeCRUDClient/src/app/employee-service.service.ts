@@ -1,15 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Employee } from './employee';
+import { Employee, PaginatedResponse } from './employee';
 import { Observable } from 'rxjs';
-
-// Define the paginated response interface
-export interface PaginatedResponse<T> {
-  pageIndex: number;
-  pageSize: number;
-  count: number;
-  data: T[];
-}
 
 @Injectable({
   providedIn: 'root'
@@ -28,12 +20,11 @@ export class EmployeeServiceService {
     return this.httpClient.get<Employee>(`${this.baseURL}/${id}`);
   }
 
-  // Updated to handle pagination params
-  getEmployees(pageIndex: number = 0, pageSize: number = 5): Observable<PaginatedResponse<Employee>> {
+  getEmployees(pageIndex: number = 1, pageSize: number = 5): Observable<PaginatedResponse<Employee>> {
     let params = new HttpParams()
       .set('pageIndex', pageIndex.toString())
       .set('pageSize', pageSize.toString());
-      
+    
     return this.httpClient.get<PaginatedResponse<Employee>>(`${this.baseURL}`, { params });
   }
 
@@ -45,13 +36,12 @@ export class EmployeeServiceService {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 
-  // Updated to handle pagination with search
-  searchEmployees(term: string, pageIndex: number = 0, pageSize: number = 5): Observable<PaginatedResponse<Employee>> {
+  searchEmployees(term: string, pageIndex: number = 1, pageSize: number = 5): Observable<PaginatedResponse<Employee>> {
     let params = new HttpParams()
-      .set('searchTerm', term)
       .set('pageIndex', pageIndex.toString())
-      .set('pageSize', pageSize.toString());
-      
+      .set('pageSize', pageSize.toString())
+      .set('q', term);
+    
     return this.httpClient.get<PaginatedResponse<Employee>>(`${this.baseURL}/search`, { params });
   }
 }

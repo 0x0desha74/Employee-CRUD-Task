@@ -1,17 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../app/employee';
+import { Employee, PaginatedResponse } from '../app/employee';
 import { EmployeeServiceService } from '../app/employee-service.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
-
-interface PaginatedResponse<T> {
-  pageIndex: number;
-  pageSize: number;
-  count: number;
-  data: T[];
-}
 
 @Component({
   selector: 'app-employee-list',
@@ -23,12 +16,12 @@ interface PaginatedResponse<T> {
 })
 export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
-
+  
   currentPage: number = 1;
   itemsPerPage: number = 5;
   totalItems: number = 0;
   pages: number[] = [];
-
+  
   searchTerm: string = '';
   private searchTerms = new Subject<string>();
   isLoading: boolean = false;
@@ -41,7 +34,7 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEmployees();
-
+    
     this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged()
@@ -50,7 +43,7 @@ export class EmployeeListComponent implements OnInit {
       this.currentPage = 1;
       this.searchEmployees();
     });
-
+    
     this.route.queryParams.subscribe(params => {
       if (params['search']) {
         this.searchTerm = params['search'];
@@ -77,13 +70,13 @@ export class EmployeeListComponent implements OnInit {
       }
     );
   }
-
+  
   searchEmployees() {
     if (!this.searchTerm.trim()) {
       this.loadEmployees();
       return;
     }
-
+    
     this.isLoading = true;
     this.employeeService.searchEmployees(this.searchTerm, this.currentPage, this.itemsPerPage).subscribe(
       (response: PaginatedResponse<Employee>) => {
@@ -100,54 +93,51 @@ export class EmployeeListComponent implements OnInit {
       }
     );
   }
-
+  
   calculatePages() {
     const pageCount = Math.ceil(this.totalItems / this.itemsPerPage);
-    this.pages = Array.from({ length: pageCount }, (_, i) => i + 1);
+    this.pages = Array.from({length: pageCount}, (_, i) => i + 1);
   }
-
+  
   goToPage(page: number) {
     if (page >= 1 && page <= this.pages.length && page !== this.currentPage) {
       this.currentPage = page;
-      this.searchTerm ? this.searchEmployees() : this.loadEmployees();
+      this.loadEmployees();
     }
   }
-
+  
   previousPage() {
     if (this.currentPage > 1) {
-      this.goToPage(this.currentPage - 1);
+      this.currentPage--;
+      this.loadEmployees();
     }
   }
-
+  
   nextPage() {
     if (this.currentPage < this.pages.length) {
-      this.goToPage(this.currentPage + 1);
+      this.currentPage++;
+      this.loadEmployees();
     }
   }
-
+  
   onSearch(term: string) {
     this.searchTerms.next(term);
   }
 
   updateEmployee(id: number) {
-    this.router.navigate(['update-employee', id]);
+    this.router.navigate(["update-employee", id]);
   }
 
   viewEmployee(id: number) {
-    this.router.navigate(['view-employee', id]);
+    this.router.navigate(["view-employee", id]);
   }
-
+  
   deleteEmployee(id: number) {
     if (confirm('Are you sure you want to delete this employee?')) {
       this.employeeService.deleteEmployee(id).subscribe(
         () => {
           alert('Employee deleted successfully');
-
-          if (this.employees.length === 1 && this.currentPage > 1) {
-            this.currentPage -= 1;
-          }
-
-          this.searchTerm ? this.searchEmployees() : this.loadEmployees();
+          this.loadEmployees();
         },
         error => {
           console.error('Error deleting employee:', error);
@@ -156,7 +146,7 @@ export class EmployeeListComponent implements OnInit {
       );
     }
   }
-
+  
   clearSearch() {
     this.searchTerm = '';
     this.currentPage = 1;

@@ -13,7 +13,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SearchTerm",
+        "Name": "Q",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -148,7 +148,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SearchTerm",
+        "Name": "Q",
         "Type": "System.String",
         "IsRequired": false
       },

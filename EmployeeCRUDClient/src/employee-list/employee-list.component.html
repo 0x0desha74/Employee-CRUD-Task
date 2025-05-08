@@ -44,7 +44,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let emp of paginatedEmployees; let i = index">
+      <tr *ngFor="let emp of employees; let i = index">
         <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
         <td>{{ emp.firstName }}</td>
         <td>{{ emp.lastName }}</td>
@@ -87,7 +87,7 @@
   
   <div *ngIf="totalItems > 0" class="text-center text-muted">
     Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to 
-    {{ currentPage * itemsPerPage > totalItems ? totalItems : currentPage * itemsPerPage }} 
+    {{ currentPage * itemsPerPage > totalItems ? totalItems : (currentPage - 1) * itemsPerPage + employees.length }} 
     of {{ totalItems }} employees
   </div>
 </div>

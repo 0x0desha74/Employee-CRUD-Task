@@ -6,11 +6,11 @@ namespace EmployeeCRUDServer.Specifications
     {
         public EmployeeFilterationAndCountSpecifications(EmployeeSpecParams specParams)
             : base(E =>
-                string.IsNullOrEmpty(specParams.SearchTerm) ||
-                E.FirstName.ToLower().Contains(specParams.SearchTerm.ToLower()) ||
-                E.LastName.ToLower().Contains(specParams.SearchTerm.ToLower()) ||
-                E.Email.ToLower().Contains(specParams.SearchTerm.ToLower()) ||
-                E.Position.ToLower().Contains(specParams.SearchTerm.ToLower())
+                string.IsNullOrEmpty(specParams.Q) ||
+                E.FirstName.ToLower().Contains(specParams.Q.ToLower()) ||
+                E.LastName.ToLower().Contains(specParams.Q.ToLower()) ||
+                E.Email.ToLower().Contains(specParams.Q.ToLower()) ||
+                E.Position.ToLower().Contains(specParams.Q.ToLower())
             )
         {
         }

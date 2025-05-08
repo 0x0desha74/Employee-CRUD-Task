@@ -20,7 +20,7 @@
             }
           },
           {
-            "name": "SearchTerm",
+            "name": "Q",
             "in": "query",
             "schema": {
               "type": "string"
@@ -129,7 +129,7 @@
             }
           },
           {
-            "name": "SearchTerm",
+            "name": "Q",
             "in": "query",
             "schema": {
               "type": "string"
