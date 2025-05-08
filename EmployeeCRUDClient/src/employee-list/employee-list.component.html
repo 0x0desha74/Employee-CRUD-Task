@@ -87,7 +87,7 @@
   
   <div *ngIf="totalItems > 0" class="text-center text-muted">
     Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to 
-    {{ currentPage * itemsPerPage > totalItems ? totalItems : (currentPage - 1) * itemsPerPage + employees.length }} 
+    {{ (currentPage * itemsPerPage > totalItems) ? totalItems : (currentPage - 1) * itemsPerPage + employees.length }} 
     of {{ totalItems }} employees
   </div>
 </div>

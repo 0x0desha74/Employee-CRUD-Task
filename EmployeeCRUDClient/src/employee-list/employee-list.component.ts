@@ -102,21 +102,33 @@ export class EmployeeListComponent implements OnInit {
   goToPage(page: number) {
     if (page >= 1 && page <= this.pages.length && page !== this.currentPage) {
       this.currentPage = page;
-      this.loadEmployees();
+      if (this.searchTerm.trim()) {
+        this.searchEmployees();
+      } else {
+        this.loadEmployees();
+      }
     }
   }
   
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.loadEmployees();
+      if (this.searchTerm.trim()) {
+        this.searchEmployees();
+      } else {
+        this.loadEmployees();
+      }
     }
   }
   
   nextPage() {
     if (this.currentPage < this.pages.length) {
       this.currentPage++;
-      this.loadEmployees();
+      if (this.searchTerm.trim()) {
+        this.searchEmployees();
+      } else {
+        this.loadEmployees();
+      }
     }
   }
   
