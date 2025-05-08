@@ -3,7 +3,7 @@
     public class EmployeeSpecParams
     {
         private const int maxPageSize = 10;
-        private int pageSize = 5; 
+        private int pageSize = 10; 
 
         public int PageSize
         {
@@ -11,12 +11,13 @@
             set { pageSize = value > maxPageSize ? value : value; }
         }
 
-        private string? search;
+        private string? searchTerm;
 
-        public string? Search
+        public string? SearchTerm
         {
-            get { return search; }
-            set { search = value?.ToLower(); }
+            
+            get { return searchTerm; }
+            set { searchTerm = value?.ToLower(); }
         }
 
 

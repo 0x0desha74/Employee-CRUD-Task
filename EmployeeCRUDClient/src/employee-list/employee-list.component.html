@@ -44,7 +44,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let emp of employees; let i = index">
+      <tr *ngFor="let emp of paginatedEmployees; let i = index">
         <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
         <td>{{ emp.firstName }}</td>
         <td>{{ emp.lastName }}</td>

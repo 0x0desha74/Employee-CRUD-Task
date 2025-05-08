@@ -30,6 +30,16 @@ namespace EmployeeCRUDServer.Controllers
             return Ok(employees);
         }
 
+        [HttpGet("search")]
+        public async Task<ActionResult<IReadOnlyList<Pagination<EmployeeToReturnDto>>>> SearchForEmployees([FromQuery] EmployeeSpecParams specParams)
+        {
+            var employees = await _employeeService.GetAllAsync(specParams);
+            if (employees is null)
+                return NotFound(new ApiResponse(404));
+
+            return Ok(employees);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<EmployeeToReturnDto>> GetEmployee(int id)
         {
